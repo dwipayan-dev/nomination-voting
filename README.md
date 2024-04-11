@@ -1,7 +1,7 @@
 # Images
 <ul>
   <li>
-  <img src="">
+  <img src="/src/assets/Screenshot 2024-04-11 125846.png">
   </li>
 </ul>
 # Nomination Voting
