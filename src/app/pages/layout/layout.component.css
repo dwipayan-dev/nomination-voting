@@ -1,0 +1,64 @@
+/* navbar.component.css */
+
+nav {
+  color: #fff;
+  height: 100%;
+  width: 220px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #181123;
+  background-image: linear-gradient(180deg,#181123 10%,#854949 100%);
+  background-size: cover;
+
+}
+
+.sidebar .sidebar-brand {
+  height: 4.375rem;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .05rem;
+  z-index: 1;
+}
+
+/* .logo img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+} */
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+ul li a.active {
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: normal;
+}
+
+.container {
+  margin-left: 220px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.sidebar-dark hr.sidebar-divider {
+  border-top: 1px solid rgba(255,255,255,.15);
+}

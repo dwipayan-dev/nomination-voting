@@ -1,0 +1,147 @@
+<h1>Edit Member</h1>
+<div class="container p-3">
+    <form [formGroup]="form" (ngSubmit)="onUpdate()">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Full Name</mat-label>
+                    <input type="text" matInput [formControl]="form.controls['fullNameFormControl']"
+                        [errorStateMatcher]="matcher" placeholder="Jhon Morgan">
+                    @if (form.controls['fullNameFormControl'].hasError('required')) {
+                    <mat-error>Full name is required.</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Social Media Link</mat-label>
+                    <input type="text" matInput [formControl]="form.controls['socialMediaFormControl']"
+                        [errorStateMatcher]="matcher" placeholder="ex: https://mywebsite.com">
+                    @if (form.controls['socialMediaFormControl'].hasError('pattern') &&
+                    !form.controls['socialMediaFormControl'].hasError('required')) {
+                    <mat-error>Invalid social media link.</mat-error>
+                    }
+                    @if (form.controls['socialMediaFormControl'].hasError('required')) {
+                    <mat-error>Social media link required.</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <mat-form-field class="example-full-width">
+                    <mat-label>First Name</mat-label>
+                    <input type="text" matInput [formControl]="form.controls['firstNameFormControl']"
+                        [errorStateMatcher]="matcher" placeholder="Jhon">
+                    @if (form.controls['firstNameFormControl'].hasError('pattern') &&
+                    !form.controls['firstNameFormControl'].hasError('required')) {
+                    <mat-error>Invalid first name.</mat-error>
+                    }
+                    @if (form.controls['firstNameFormControl'].hasError('required')) {
+                    <mat-error>First Name required.</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Last Name</mat-label>
+                    <input type="text" matInput [formControl]="form.controls['lastNameFormControl']"
+                        [errorStateMatcher]="matcher" placeholder="Morgan">
+                    @if (form.controls['lastNameFormControl'].hasError('pattern') &&
+                    !form.controls['lastNameFormControl'].hasError('required')) {
+                    <mat-error>Invalid last name.</mat-error>
+                    }
+                    @if (form.controls['lastNameFormControl'].hasError('required')) {
+                    <mat-error>Last Name required.</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Country</mat-label>
+                    <mat-select required [formControl]="form.controls['countryFormControl']"
+                        [errorStateMatcher]="matcher">
+                        <mat-option *ngFor="let item of country" value="{{item.id}}">{{item.name}}</mat-option>
+                    </mat-select>
+                    @if (form.controls['countryFormControl'].hasError('required')) {
+                    <mat-error>Country is required.</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [formControl]="form.controls['emailFormControl']"
+                        [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com">
+                    @if (form.controls['emailFormControl'].hasError('email') &&
+                    !form.controls['emailFormControl'].hasError('required')) {
+                    <mat-error>Please enter a valid email address</mat-error>
+                    }
+                    @if (form.controls['emailFormControl'].hasError('required')) {
+                    <mat-error>Email is required.</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" (input)="onPasswordInput()"
+                        [formControl]="form.controls['passwordFormControl']" [errorStateMatcher]="matcher"
+                        placeholder="Ex. Example@123.com"/>
+                    <mat-icon matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide" aria-hidden="false" aria-label="Example home icon"
+                        fontIcon="{{hide ? 'visibility_off' : 'visibility'}}"></mat-icon>
+                    @if (form.controls['passwordFormControl'].hasError('minlength') &&
+                    !form.controls['passwordFormControl'].hasError('required')) {
+                    <mat-error>Create a strong password with minimum 6 characters.</mat-error>
+                    }
+                    @if (form.controls['passwordFormControl'].hasError('required')) {
+                    <mat-error>Password is required.</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Confirm Password</mat-label>
+                    <input matInput type="password" [formControl]="form.controls['confirmPasswordFormControl']"
+                        (input)="onConfPasswordInput()" [errorStateMatcher]="matcher" placeholder="Ex. Example@123.com" />
+                    <mat-error
+                        *ngIf="password2.invalid && !form.controls['confirmPasswordFormControl'].hasError('required')">Passwords
+                        don't match</mat-error>
+                    @if (form.controls['confirmPasswordFormControl'].hasError('required')) {
+                    <mat-error>Confirm password is required.</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Profile Picture(max 200kb)</mat-label>
+                    <input matInput [errorStateMatcher]="matcher" [formControl]="form.controls['profilePicFormControl']"
+                        readonly type="text" (click)="fileInput.click()" />
+                    <input type="file" accept="image/*" style="display: none;" #fileInput
+                        (change)="onFileSelected($event)" />
+                    <mat-icon matSuffix aria-hidden="false" aria-label="Example home icon"
+                        fontIcon="attach_file"></mat-icon>
+                    @if (form.controls['profilePicFormControl'].hasError('required')) {
+                    <mat-error>Profile picture is required.</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <label>Nomination : </label>
+                <mat-radio-group [formControl]="form.controls['nominationFormControl']" aria-label="Select an option"
+                    required>
+                    <mat-radio-button color="primary" value="yes">Yes</mat-radio-button>
+                    <mat-radio-button value="no">No</mat-radio-button>
+                </mat-radio-group>
+                @if (form.controls['nominationFormControl'].hasError('required')) {
+                <mat-error>Nomination check required.</mat-error>
+                }
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+                <img [src]="append_profile_pic" style="background:grey;height: 100px;width: auto;">
+            </div>
+        </div>
+        <button class="mt-5" mat-flat-button color="accent" type="submit" id="submit_btn">
+            Update
+        </button>
+    </form>
+</div>

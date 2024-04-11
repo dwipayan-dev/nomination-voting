@@ -1,0 +1,115 @@
+<h1>Position Details</h1>
+<button (click)="export(position.uuid)" mat-mini-fab color="accent" style="float: inline-end;color:white">
+    <mat-icon>description</mat-icon>
+</button>
+<section>
+    <div class="container">
+        <div class="col-md-12">
+            <ul>
+                <li>Nomination Start & End Date: <b>
+                        {{position?.get_nomination?.start_date| date:'EEEE, MMMM d, y'}}</b>
+                    to <b>{{position?.get_nomination?.end_date| date:'EEEE, MMMM d, y'}}
+                    </b>
+                </li>
+                <li>Nomination Name: <b>
+                        {{position?.get_nomination?.name}}
+                    </b></li>
+                <li>Membership Type:
+                    <b>
+                        {{position?.get_position?.get_membership_type?.membership_type}}
+                    </b>
+                </li>
+                <li>Position: <b>
+                        {{position?.get_position?.membership_position}}
+                    </b>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="memberNomination">
+                    <ng-container matColumnDef="membership_name">
+                        <th mat-header-cell *matHeaderCellDef> Membership Name </th>
+                        <td mat-cell *matCellDef="let row">
+                            {{row.name}}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="total_vote">
+                        <th mat-header-cell *matHeaderCellDef> Total Vote </th>
+                        <td mat-cell *matCellDef="let row">{{row.total_vote}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="total_vote_in_per">
+                        <th mat-header-cell *matHeaderCellDef> Total Vote in %</th>
+                        <td mat-cell *matCellDef="let row">
+                            {{row.total_percentage}}%
+
+                            <mat-progress-bar mode="determinate" [value]="row.total_percentage"></mat-progress-bar>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef> Status </th>
+                        <td mat-cell *matCellDef="let row">
+                            @if(row.status == '1'){
+                            <button mat-button style="color: green;" disabled>Active</button>
+                            }
+                            @else if(row.status == '2'){
+                            <button mat-button style="color: orange;" disabled>Move for Election</button>
+
+                            }
+                            @else {
+                            <button mat-button style="color: red;" disabled>In Active</button>
+                            }
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                        <td mat-cell *matCellDef="let row">
+                            <div class="example-button-row">
+                                <div class="example-flex-container">
+
+                                    <button [routerLink]="'/nomination-position/'+row.uuid" mat-icon-button
+                                        color="primary">
+                                        <mat-icon aria-hidden="false" fontIcon="visibility"></mat-icon>
+                                    </button>
+                                   
+                                    <button [routerLink]="'/nomination-position/'+row.uuid" mat-icon-button
+                                        style="color: green;">
+                                        <mat-icon aria-hidden="false" fontIcon="check"></mat-icon>
+                                    </button>
+
+                                    <button [routerLink]="'/nomination-position/'+row.uuid" mat-icon-button
+                                       style="color: red;" [disabled]="row.status == '2'">
+                                        <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+                                    </button>
+    
+                                    <button [routerLink]="'/nomination-position/'+row.uuid" mat-icon-button
+                                    style="color: grey;">
+                                        <mat-icon aria-hidden="false" fontIcon="groups"></mat-icon>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsNominationPosition"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsNominationPosition;"></tr>
+                    <!-- <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell text-center" colspan="4">No data matching the filter "{{input.value}}"</td>
+                    </tr> -->
+                </table>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</section>

@@ -1,0 +1,51 @@
+<div class="parent">
+   
+    <div class="main">
+        <input type="checkbox" id="chk" aria-hidden="true">
+        <div class="login">
+            <form [formGroup]="form">
+                <label for="chk" aria-hidden="true">Login</label>
+                <input type="email" formControlName="email" [(ngModel)]="loginObject.email" placeholder="Email"
+                    required="" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors['required']">Email is required</div>
+                    <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+                </div>
+                <input type="password" formControlName="password" [(ngModel)]="loginObject.password"
+                    placeholder="Password" required="" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <div *ngIf="f['password'].errors['required']">Password is required</div>
+                    <div *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</div>
+                    <div *ngIf="f['password'].errors['maxlength']">Username must not exceed 40 characters</div>
+                </div>
+                <button (click)="onLogin()">Login</button>
+            </form>
+        </div>
+        <div class="signup">
+            <form [formGroup]="signUpForm">
+                <label for="chk" aria-hidden="true">Sign up</label>
+                <input type="text" formControlName="userName" placeholder="User name" required=""
+                    [ngClass]="{ 'is-invalid': signUpSubmitted && s['userName'].errors }">
+                <div *ngIf="signUpSubmitted && s['userName'].errors" class="invalid-feedback">
+                    <div *ngIf="s['userName'].errors['required']">User name is required</div>
+                </div>
+                <input type="email" formControlName="email" placeholder="Email" required=""
+                    [ngClass]="{ 'is-invalid': signUpSubmitted && s['email'].errors }">
+                <div *ngIf="signUpSubmitted && s['email'].errors" class="invalid-feedback">
+                    <div *ngIf="s['email'].errors['required']">Email is required</div>
+                    <div *ngIf="s['email'].errors['email']">Email is invalid</div>
+                </div>
+                <input type="password" formControlName="password" placeholder="Password" required=""
+                    [ngClass]="{ 'is-invalid': signUpSubmitted && s['password'].errors }">
+                <div *ngIf="signUpSubmitted && s['password'].errors" class="invalid-feedback">
+                    <div *ngIf="s['password'].errors['required']">Password is required</div>
+                    <div *ngIf="s['password'].errors['minlength']">Password must be at least 6 characters</div>
+                    <div *ngIf="s['password'].errors['maxlength']">Username must not exceed 40 characters</div>
+                </div>
+                <button (click)="signUp()">Sign up</button>
+            </form>
+        </div>
+
+
+    </div>
+</div>

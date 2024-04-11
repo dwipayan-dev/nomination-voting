@@ -1,0 +1,42 @@
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+table {
+  width: 100%;
+}
+
+/* mat-icon {
+  font-size: 18px;
+  color: grey;
+} */
+
+.avatar {
+  background: rgb(186, 0, 0);
+  border-radius: 50%;
+  color: #fff;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 300;
+  margin: 0;
+  position: relative;
+  vertical-align: middle;
+  line-height: 1.28;
+  height: 45px;
+  width: 45px;
+}
+
+.avatar img {
+  border-radius: 50%;
+  height: 100%;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
