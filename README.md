@@ -3,6 +3,15 @@
   <li>
   <img src="/src/assets/Screenshot 2024-04-11 125846.png">
   </li>
+   <li>
+  <img src="/src/assets/Screenshot 2024-04-11 125558.png">
+  </li>
+   <li>
+  <img src="/src/assets/Screenshot 2024-04-11 125627.png">
+  </li>
+   <li>
+  <img src="Screenshot 2024-04-11 125744.png">
+  </li>
 </ul>
 # Nomination Voting
 
